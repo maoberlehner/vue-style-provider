@@ -1,0 +1,27 @@
+{
+  "name": "vue-stype-provider",
+  "version": "0.1.0",
+  "author": "Markus Oberlehner",
+  "homepage": "https://github.com/maoberlehner/vue-stype-provider",
+  "private": "true",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:production": "NODE_ENV=production yarn build",
+    "lint:scripts": "eslint --ext .js,.vue ."
+  },
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@avalanche/eslint-config": "^4.0.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "autoprefixer": "^10.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.9.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prefer-let": "^1.1.0",
+    "eslint-plugin-vue": "^7.0.0-beta.3",
+    "vite": "^1.0.0-rc.4"
+  }
+}
