@@ -2,7 +2,8 @@
   <div>
     <ProvideStylePadding
       v-slot="{ $$padding }"
-      :config="[`m`, `l@s`, `xl@l`]"
+      :padding="[`m`, `l@s`, `xl@l`]"
+      :padding-top="[`xl@m`]"
     >
       <div
         :class="$$padding.class"
