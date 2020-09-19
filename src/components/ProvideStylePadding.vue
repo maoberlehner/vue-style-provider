@@ -25,7 +25,7 @@ export default {
     },
   },
   setup(props) {
-    let styles = {};
+    let styles = { '--padding': SPACINGS.m };
 
     // eslint-disable-next-line no-restricted-syntax
     for (let padding of props.config) {
