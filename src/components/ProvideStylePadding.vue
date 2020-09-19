@@ -30,7 +30,7 @@ export default {
     // eslint-disable-next-line no-restricted-syntax
     for (let padding of props.config) {
       let [size, breakpoint] = padding.split(`@`);
-      let name = [`--padding`, breakpoint].filter(x => x).join(`-`);
+      let name = [`--padding`, breakpoint].filter(x => x).join(`-bp-`);
       styles[name] = SPACINGS[size];
     }
 
@@ -43,23 +43,22 @@ export default {
 
 <style lang="scss" module>
 .root {
-  --padding: 1rem;
-  --x-padding-s: var(--padding-s, var(--padding));
-  --x-padding-m: var(--padding-m, var(--x-padding-s));
-  --x-padding-l: var(--padding-l, var(--x-padding-m));
+  --x-padding-bp-s: var(--padding-bp-s, var(--padding));
+  --x-padding-bp-m: var(--padding-bp-m, var(--x-padding-bp-s));
+  --x-padding-bp-l: var(--padding-bp-l, var(--x-padding-bp-m));
 
   padding: var(--padding);
 
   @media (min-width: 376px) {
-    padding: var(--x-padding-s);
+    padding: var(--x-padding-bp-s);
   }
 
   @media (min-width: 768px) {
-    padding: var(--x-padding-m);
+    padding: var(--x-padding-bp-m);
   }
 
   @media (min-width: 1024px) {
-    padding: var(--x-padding-l);
+    padding: var(--x-padding-bp-l);
   }
 }
 </style>
