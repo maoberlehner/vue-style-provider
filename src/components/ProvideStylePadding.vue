@@ -43,22 +43,22 @@ export default {
 
 <style lang="scss" module>
 .root {
-  --x-padding-bp-s: var(--padding-bp-s, var(--padding));
-  --x-padding-bp-m: var(--padding-bp-m, var(--x-padding-bp-s));
-  --x-padding-bp-l: var(--padding-bp-l, var(--x-padding-bp-m));
+  --padding-bp-s: var(--padding);
+  --padding-bp-m: var(--padding-bp-s);
+  --padding-bp-l: var(--padding-bp-m);
 
   padding: var(--padding);
 
   @media (min-width: 376px) {
-    padding: var(--x-padding-bp-s);
+    padding: var(--padding-bp-s);
   }
 
   @media (min-width: 768px) {
-    padding: var(--x-padding-bp-m);
+    padding: var(--padding-bp-m);
   }
 
   @media (min-width: 1024px) {
-    padding: var(--x-padding-bp-l);
+    padding: var(--padding-bp-l);
   }
 }
 </style>
