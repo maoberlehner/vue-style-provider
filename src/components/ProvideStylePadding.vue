@@ -15,67 +15,42 @@ const SPACINGS = {
   l: `1.25rem`,
   xl: `1.5rem`,
 };
+const SIDES = [
+  ``,
+  `top`,
+  `right`,
+  `bottom`,
+  `left`,
+];
+
+function capitalizeFirstLetter(string) {
+  return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
+}
+
+const componentProps = {};
+
+// eslint-disable-next-line no-restricted-syntax
+for (let side of SIDES) {
+  componentProps[`padding${capitalizeFirstLetter(side)}`] = {
+    default: null,
+    type: Array,
+  };
+}
 
 export default {
   name: `ProvideStylePadding`,
-  props: {
-    padding: {
-      default: null,
-      type: Array,
-    },
-    paddingTop: {
-      default: null,
-      type: Array,
-    },
-    paddingRight: {
-      default: null,
-      type: Array,
-    },
-    paddingBottom: {
-      default: null,
-      type: Array,
-    },
-    paddingLeft: {
-      default: null,
-      type: Array,
-    },
-  },
+  props: componentProps,
   setup(props) {
     let styles = { '--padding': SPACINGS.m };
 
     // eslint-disable-next-line no-restricted-syntax
-    for (let padding of props.padding || []) {
-      let [size, breakpoint] = padding.split(`@`);
-      let name = [`--padding`, breakpoint].filter(x => x).join(`-bp-`);
-      styles[name] = SPACINGS[size];
-    }
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (let paddingTop of props.paddingTop || []) {
-      let [size, breakpoint] = paddingTop.split(`@`);
-      let name = [`--padding-top`, breakpoint].filter(x => x).join(`-bp-`);
-      styles[name] = SPACINGS[size];
-    }
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (let paddingRight of props.paddingRight || []) {
-      let [size, breakpoint] = paddingRight.split(`@`);
-      let name = [`--padding-right`, breakpoint].filter(x => x).join(`-bp-`);
-      styles[name] = SPACINGS[size];
-    }
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (let paddingBottom of props.paddingBottom || []) {
-      let [size, breakpoint] = paddingBottom.split(`@`);
-      let name = [`--padding-bottom`, breakpoint].filter(x => x).join(`-bp-`);
-      styles[name] = SPACINGS[size];
-    }
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (let paddingLeft of props.paddingLeft || []) {
-      let [size, breakpoint] = paddingLeft.split(`@`);
-      let name = [`--padding-left`, breakpoint].filter(x => x).join(`-bp-`);
-      styles[name] = SPACINGS[size];
+    for (let side of SIDES) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (let padding of props[`padding${capitalizeFirstLetter(side)}`] || []) {
+        let [size, breakpoint] = padding.split(`@`);
+        let name = [`--padding${side && `-${side}`}`, breakpoint].filter(x => x).join(`-bp-`);
+        styles[name] = SPACINGS[size];
+      }
     }
 
     return {
