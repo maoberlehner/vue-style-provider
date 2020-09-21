@@ -8,20 +8,10 @@
 </template>
 
 <script>
-const SPACINGS = {
-  xs: `0.5rem`,
-  s: `0.75rem`,
-  m: `1rem`,
-  l: `1.25rem`,
-  xl: `1.5rem`,
-};
-const SIDES = [
-  ``,
-  `top`,
-  `right`,
-  `bottom`,
-  `left`,
-];
+import {
+  sides,
+  spacings,
+} from '../style.config.json';
 
 function capitalizeFirstLetter(string) {
   return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
@@ -30,7 +20,7 @@ function capitalizeFirstLetter(string) {
 const componentProps = {};
 
 // eslint-disable-next-line no-restricted-syntax
-for (let side of SIDES) {
+for (let side of [``, ...sides]) {
   componentProps[`padding${capitalizeFirstLetter(side)}`] = {
     default: null,
     type: Array,
@@ -41,15 +31,15 @@ export default {
   name: `ProvideStylePadding`,
   props: componentProps,
   setup(props) {
-    let styles = { '--padding': SPACINGS.m };
+    let styles = { '--padding': spacings.m };
 
     // eslint-disable-next-line no-restricted-syntax
-    for (let side of SIDES) {
+    for (let side of [``, ...sides]) {
       // eslint-disable-next-line no-restricted-syntax
       for (let padding of props[`padding${capitalizeFirstLetter(side)}`] || []) {
         let [size, breakpoint] = padding.split(`@`);
         let name = [`--padding${side && `-${side}`}`, breakpoint].filter(x => x).join(`-bp-`);
-        styles[name] = SPACINGS[size];
+        styles[name] = spacings[size];
       }
     }
 
