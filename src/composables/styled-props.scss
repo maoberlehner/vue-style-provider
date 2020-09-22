@@ -1,0 +1,41 @@
+@mixin use-styled-props($property) {
+  --#{$property}-bp-s: var(--#{$property});
+  --#{$property}-bp-m: var(--#{$property}-bp-s);
+  --#{$property}-bp-l: var(--#{$property}-bp-m);
+
+  #{$property}:
+    var(--#{$property}-top, var(--#{$property}))
+    var(--#{$property}-right, var(--#{$property}))
+    var(--#{$property}-bottom, var(--#{$property}))
+    var(--#{$property}-left, var(--#{$property}));
+
+  --x-#{$property}-bp-s:
+    var(--#{$property}-top-bp-s, var(--#{$property}-top, var(--#{$property}-bp-s)))
+    var(--#{$property}-right-bp-s, var(--#{$property}-right, var(--#{$property}-bp-s)))
+    var(--#{$property}-bottom-bp-s, var(--#{$property}-bottom, var(--#{$property}-bp-s)))
+    var(--#{$property}-left-bp-s, var(--#{$property}-left, var(--#{$property}-bp-s)));
+
+  @media (min-width: 376px) {
+    #{$property}: var(--x-#{$property}-bp-s);
+  }
+
+  --x-#{$property}-bp-m:
+    var(--#{$property}-top-bp-m, var(--#{$property}-top-bp-s, var(--#{$property}-bp-m)))
+    var(--#{$property}-right-bp-m, var(--#{$property}-right-bp-s, var(--#{$property}-bp-m)))
+    var(--#{$property}-bottom-bp-m, var(--#{$property}-bottom-bp-s, var(--#{$property}-bp-m)))
+    var(--#{$property}-left-bp-m, var(--#{$property}-left-bp-s, var(--#{$property}-bp-m)));
+
+  @media (min-width: 768px) {
+    #{$property}: var(--x-#{$property}-bp-m);
+  }
+
+  --x-#{$property}-bp-l:
+    var(--#{$property}-top-bp-l, var(--#{$property}-top-bp-m, var(--#{$property}-bp-l)))
+    var(--#{$property}-right-bp-l, var(--#{$property}-right-bp-m, var(--#{$property}-bp-l)))
+    var(--#{$property}-bottom-bp-l, var(--#{$property}-bottom-bp-m, var(--#{$property}-bp-l)))
+    var(--#{$property}-left-bp-l, var(--#{$property}-left-bp-m, var(--#{$property}-bp-l)));
+
+  @media (min-width: 1024px) {
+    #{$property}: var(--x-#{$property}-bp-l)
+  }
+}
