@@ -13,34 +13,27 @@ import {
   spacings,
 } from '../style.config.json';
 import {
-  capitalizeFirstLetter,
-} from '../utils/capitalize-first-letter';
+  generateComponentProps,
+  useStyledProps,
+} from '../composables/styled-props';
 
-const componentProps = {};
-
-// eslint-disable-next-line no-restricted-syntax
-for (let side of [``, ...sides]) {
-  componentProps[`padding${capitalizeFirstLetter(side)}`] = {
-    default: null,
-    type: Array,
-  };
-}
+let cssProperty = `padding`;
+let variants = sides;
 
 export default {
   name: `ProvideStylePadding`,
-  props: componentProps,
+  props: generateComponentProps({
+    cssProperty,
+    variants,
+  }),
   setup(props) {
-    let styles = { '--padding': spacings.m };
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (let side of [``, ...sides]) {
-      // eslint-disable-next-line no-restricted-syntax
-      for (let padding of props[`padding${capitalizeFirstLetter(side)}`] || []) {
-        let [size, breakpoint] = padding.split(`@`);
-        let name = [`--padding${side && `-${side}`}`, breakpoint].filter(x => x).join(`-bp-`);
-        styles[name] = spacings[size];
-      }
-    }
+    let { styles } = useStyledProps({
+      cssProperty,
+      defaultOption: spacings.m,
+      options: spacings,
+      props,
+      variants,
+    });
 
     return {
       styles,
