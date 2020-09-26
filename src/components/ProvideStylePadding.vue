@@ -2,7 +2,7 @@
   <slot
     :$$padding="{
       class: $style.root,
-      styles,
+      style,
     }"
   />
 </template>
@@ -27,7 +27,7 @@ export default {
     variants,
   }),
   setup(props) {
-    let { styles } = useStyledProps({
+    let { style } = useStyledProps({
       cssProperty,
       defaultOption: spacings.m,
       options: spacings,
@@ -36,7 +36,7 @@ export default {
     });
 
     return {
-      styles,
+      style,
     };
   },
 };

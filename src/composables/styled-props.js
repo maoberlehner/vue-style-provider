@@ -33,8 +33,8 @@ export function useStyledProps({
   props,
   variants,
 }) {
-  let styles = computed(() => {
-    let stylesObject = { [`--${cssProperty}`]: defaultOption };
+  let style = computed(() => {
+    let styleObject = { [`--${cssProperty}`]: defaultOption };
 
     // eslint-disable-next-line no-restricted-syntax
     for (let variant of [``, ...variants]) {
@@ -45,14 +45,14 @@ export function useStyledProps({
           .filter(x => x)
           .join(VARIABLE_BREAKPOINT_SEPARATOR);
 
-        stylesObject[name] = options[option];
+        styleObject[name] = options[option];
       }
     }
 
-    return stylesObject;
+    return styleObject;
   });
 
   return {
-    styles,
+    style,
   };
 }

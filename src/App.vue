@@ -7,7 +7,7 @@
     >
       <div
         :class="$$padding.class"
-        :style="$$padding.styles"
+        :style="$$padding.style"
       >
         Hello World
       </div>
